@@ -6,13 +6,13 @@
 \usage{
 \method{predict}{spar.cv}(
   object,
-  xnew,
+  xnew = NULL,
   type = c("response", "link"),
   avg_type = c("link", "response"),
   opt_par = c("best", "1se"),
   nummod = NULL,
   nu = NULL,
-  coef = NULL,
+  aggregate = c("mean", "median"),
   ...
 )
 }
@@ -26,8 +26,8 @@
 \item{avg_type}{type of averaging the marginal models; either on link (default) or on response level}
 
 \item{opt_par}{one of  \code{c("best","1se")}, chooses whether to select the
-best pair of  \code{nus} and  \code{nummods} according to CV-Meas, or the
-sparsest solution within one sd of that optimal CV-Meas;
+best pair of  \code{nus} and  \code{nummods} according to CV measure, or the
+sparsest solution within one sd of that optimal CV measure;
 ignored when  \code{nummod} and  \code{nu}, or  \code{coef} are given}
 
 \item{nummod}{number of models used to form coefficients; value with
@@ -36,7 +36,9 @@ minimal validation  \code{Meas} is used if not provided.}
 \item{nu}{threshold level used to form coefficients; value with minimal
 validation  \code{Meas} is used if not provided.}
 
-\item{coef}{optional; result of \code{\link{coef.spar.cv}} can be used.}
+\item{aggregate}{character one of c("mean", "median");
+the aggregation over the ensembles is done using the specified method (mean or median).
+Defaults to mean aggregation.}
 
 \item{...}{further arguments passed to or from other methods}
 }
